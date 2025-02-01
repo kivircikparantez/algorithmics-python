@@ -73,7 +73,7 @@ def game_loop():
 
         sleep(0.1)  # Oyun hızını kontrol etmek için
 
-    # Kazanma mesajı
+    # Kaybettin mesajı
     t = Turtle()
     t.penup()
     t.hideturtle()

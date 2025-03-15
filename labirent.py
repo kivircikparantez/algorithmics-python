@@ -1,25 +1,30 @@
 import play
 from random import randint
 
-background = play.new_image('GirisEkrani.jpg')
-background.go_to(0, 80)
+arkaplan = play.new_image("GirisEkrani.jpg")
+arkaplan.go_to(0,80)
 
-GirisButton = play.new_box(color='red', x=0, y=-150, width=150, height=50, border_color='black', border_width=2)
-GirisText = play.new_text(words="Oyuna Başla", x=0, y=-150, font=None, font_size=25, color='white')
-CikisButton = play.new_image(image='Cikis.png', x=-350, y=-250, size=15)
-settings = play.new_image(image='Settings.png', x=350, y=-250, size=12)
-settingsBox = play.new_box(color='white', x=0, y=-250, width=500, height=60, border_color='red', border_width=6)
-settingsText = play.new_text(words="Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!", x=0, y=-250, font=None, font_size=22, color='black')
-settingsBox.hide()
-settingsText.hide()
+GirisButton = play.new_box(color="red", x=0, y=-150, width=150, height=50, border_color="black", border_width=2)
+GirisText = play.new_text(words ="Oyuna Başla", x = 0, y=-150, font=None, font_size=25, color="white")
+CikisButton = play.new_image(image="Cikis.png", x=-350, y=-250, size=15)
 
-oyunArkaPlan = play.new_image(image='wall.jpg', size=140, transparency=70)
-kurt1 = play.new_image(image="kurt.png", x=-60, y=-195, size=15)
-kurt2 = play.new_image(image="kurt.png", x=0, y=85, size=15)
-kurt3 = play.new_image(image="kurt.png", x=-60, y=-15, size=15)
+ayarlar = play.new_image("Settings.png", x = 350, y=-250, size=12)
+ayarlarBox = play.new_box(color="white", x=0, y=-250, width=500, height=60, border_color="red", border_width=6)
+ayarlarText = play.new_text(words="Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!", 
+                            x= 0 , y = -250, font=None, font_size=22, color="black")
+ayarlarBox.hide()
+ayarlarText.hide()
+
+oyunArkaPlan = play.new_image("wall.jpg", size=140, transparency=70)
+
+kurt1 = play.new_image(image="kurt.png", x=-60, y=-195, size = 15)
+kurt2 = play.new_image(image="kurt.png", x=-0, y=85, size = 15)
+kurt3 = play.new_image(image="kurt.png", x=60, y=-15, size = 15)
+
 kurt1.hide()
-kurt2.hide()
-kurt3.hide()
+kurt2.hide() 
+kurt3.hide() 
+
 wall1 = play.new_box(color='black', x=300, y=20, width=10, height=400, border_color='white', border_width=2)
 wall2 = play.new_box(color='black', x=0, y=-230, width=580, height=10, border_color='white', border_width=2)
 wall3 = play.new_box(color='black', x=5, y=225, width=600, height=10, border_color='white', border_width=2)
@@ -43,21 +48,23 @@ wall20 = play.new_box(color='black', x=-205, y=105, width=100, height=10, border
 wall21 = play.new_box(color='black', x=-110, y=95, width=10, height=100, border_color='white', border_width=2)
 wall22 = play.new_box(color='black', x=50, y=125, width=80, height=10, border_color='white', border_width=2)
 wall23 = play.new_box(color='black', x=220, y=60, width=50, height=10, border_color='white', border_width=2)
-anaKarakter = play.new_image(image='AnaKarakter.png', x=280, y=-200, size=7)
+
+anaKarakter = play.new_image(image="AnaKarakter.png", x=280, y=-200, size=7)
 anaKarakter.hide()
-ormanEvi = play.new_image(image='ev.png', x=-305, y=198, size=15)
+
+ormanEvi = play.new_image(image="ev.png", x=-305, y=198, size=15)
 ormanEvi.hide()
 
 @ayarlar.when_clicked
-async def settingss():
-    settingsBox.show()
-    settingsText.show()
+async def settings():
+    ayarlarBox.show()
+    ayarlarText.show()
     await play.timer(seconds=4)
-    settingsText.words = "Labirentteki kurtlara dikkat etmeniz gerekmektedir!"
+    ayarlarText.words = "Labirentteki kurtlaara dikkat etmeniz gerekmektedir!"
     await play.timer(seconds=4)
-    settingsBox.hide()
-    settingsText.hide()
-    settingsText.words = "Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!"
+    ayarlarBox.hide()
+    ayarlarText.hide()
+    ayarlarText.words = "Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!"
 
 @CikisButton.when_clicked
 async def cikis():
@@ -66,13 +73,13 @@ async def cikis():
 
 @GirisButton.when_clicked
 async def giris():
-    background.hide()
+    arkaplan.hide()
     GirisButton.hide()
     GirisText.hide()
     CikisButton.hide()
-    settingsBox.hide()
-    settingsText.hide()
     ayarlar.hide()
+    ayarlarBox.hide()
+    ayarlarText.hide()
     anaKarakter.show()
     ormanEvi.show()
     kurt1.show()
@@ -103,5 +110,8 @@ async def giris():
     wall23.show()
     oyunArkaPlan.show()
 
+@play.when_program_starts
 
-play.start_program()
+
+
+play.start_program ()

@@ -165,6 +165,61 @@ async def start():
     wall22.start_physics(can_move=False)
     wall23.start_physics(can_move=False)
 
+@play.repeat_forever
+async def game():
+    anaKarakter.x_speed = 0
+    anaKarakter.y_speed = 0
+    if play.key_is_pressed("w","up"):
+        anaKarakter.physics.y_speed = 15
+    if play.key_is_pressed("s","down"):
+        anaKarakter.physics.y_speed = -15
+    if play.key_is_pressed("d","right"):
+        anaKarakter.physics.x_speed = 15 
+    if play.key_is_pressed("a","left"):
+        anaKarakter.physics.x_speed = -15
+    if anaKarakter.is_touching(ormanEvi):
+        wall1.hide()
+        wall2.hide()
+        wall3.hide()
+        wall4.hide()
+        wall5.hide()
+        wall6.hide()
+        wall7.hide()
+        wall8.hide()
+        wall9.hide()
+        wall10.hide()
+        wall11.hide()
+        wall12.hide()
+        wall13.hide()
+        wall14.hide()
+        wall15.hide()
+        wall16.hide()
+        wall17.hide()
+        wall18.hide()
+        wall19.hide()
+        wall20.hide()
+        wall21.hide()
+        wall22.hide()
+        wall23.hide()
+        oyunArkaPlan.hide()
+        anaKarakter.hide()
+        ormanEvi.hide()
+        kurt1.hide()
+        kurt2.hide()
+        kurt3.hide()
+
+@play.repeat_forever
+async def move_kurt1():
+    kurt1.physics.x_speed = 5  
+    if kurt1.x < -50:
+        kurt1.direction = "right"
+    if kurt1.x > 50:
+        kurt1.direction = "left"
+    if kurt1.direction == "left":
+        kurt1.x -= randint(1,10)  
+    else: 
+        kurt1.x += randint(1,10)
+    await play.timer(seconds=1/60)
 
 
 play.start_program ()

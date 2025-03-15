@@ -48,4 +48,60 @@ anaKarakter.hide()
 ormanEvi = play.new_image(image='ev.png', x=-305, y=198, size=15)
 ormanEvi.hide()
 
+@ayarlar.when_clicked
+async def settingss():
+    settingsBox.show()
+    settingsText.show()
+    await play.timer(seconds=4)
+    settingsText.words = "Labirentteki kurtlara dikkat etmeniz gerekmektedir!"
+    await play.timer(seconds=4)
+    settingsBox.hide()
+    settingsText.hide()
+    settingsText.words = "Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!"
+
+@CikisButton.when_clicked
+async def cikis():
+    await play.timer(seconds=1)
+    quit()
+
+@GirisButton.when_clicked
+async def giris():
+    background.hide()
+    GirisButton.hide()
+    GirisText.hide()
+    CikisButton.hide()
+    settingsBox.hide()
+    settingsText.hide()
+    ayarlar.hide()
+    anaKarakter.show()
+    ormanEvi.show()
+    kurt1.show()
+    kurt2.show()
+    kurt3.show()
+    wall1.show()
+    wall2.show()
+    wall3.show()
+    wall4.show()
+    wall5.show()
+    wall6.show()
+    wall7.show()
+    wall8.show()
+    wall9.show()
+    wall10.show()
+    wall11.show()
+    wall12.show()
+    wall13.show()
+    wall14.show()
+    wall15.show()
+    wall16.show()
+    wall17.show()
+    wall18.show()
+    wall19.show()
+    wall20.show()
+    wall21.show()
+    wall22.show()
+    wall23.show()
+    oyunArkaPlan.show()
+
+
 play.start_program()

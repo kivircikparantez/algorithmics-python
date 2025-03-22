@@ -1,25 +1,30 @@
 import play
 from random import randint
 
-background = play.new_image('GirisEkrani.jpg')
-background.go_to(0, 80)
+arkaplan = play.new_image("GirisEkrani.jpg")
+arkaplan.go_to(0,80)
 
-GirisButton = play.new_box(color='red', x=0, y=-150, width=150, height=50, border_color='black', border_width=2)
-GirisText = play.new_text(words="Oyuna Başla", x=0, y=-150, font=None, font_size=25, color='white')
-CikisButton = play.new_image(image='Cikis.png', x=-350, y=-250, size=15)
-ayarlar = play.new_image(image='Settings.png', x=350, y=-250, size=12)
-settingsBox = play.new_box(color='white', x=0, y=-250, width=500, height=60, border_color='red', border_width=6)
-settingsText = play.new_text(words="Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!", x=0, y=-250, font=None, font_size=22, color='black')
-settingsBox.hide()
-settingsText.hide()
+GirisButton = play.new_box(color="red", x=0, y=-150, width=150, height=50, border_color="black", border_width=2)
+GirisText = play.new_text(words ="Oyuna Başla", x = 0, y=-150, font=None, font_size=25, color="white")
+CikisButton = play.new_image(image="Cikis.png", x=-350, y=-250, size=15)
 
-oyunArkaPlan = play.new_image(image='wall.jpg', size=140, transparency=70)
-kurt1 = play.new_image(image="kurt.png", x=-60, y=-195, size=15)
-kurt2 = play.new_image(image="kurt.png", x=0, y=85, size=15)
-kurt3 = play.new_image(image="kurt.png", x=-60, y=-15, size=15)
+ayarlar = play.new_image("Settings.png", x = 350, y=-250, size=12)
+ayarlarBox = play.new_box(color="white", x=0, y=-250, width=500, height=60, border_color="red", border_width=6)
+ayarlarText = play.new_text(words="Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!", 
+                            x= 0 , y = -250, font=None, font_size=22, color="black")
+ayarlarBox.hide()
+ayarlarText.hide()
+
+oyunArkaPlan = play.new_image("wall.jpg", size=140, transparency=70)
+
+kurt1 = play.new_image(image="kurt.png", x=-60, y=-195, size = 15)
+kurt2 = play.new_image(image="kurt.png", x=-0, y=85, size = 15)
+kurt3 = play.new_image(image="kurt.png", x=60, y=-15, size = 15)
+
 kurt1.hide()
-kurt2.hide()
-kurt3.hide()
+kurt2.hide() 
+kurt3.hide() 
+
 wall1 = play.new_box(color='black', x=300, y=20, width=10, height=400, border_color='white', border_width=2)
 wall2 = play.new_box(color='black', x=0, y=-230, width=580, height=10, border_color='white', border_width=2)
 wall3 = play.new_box(color='black', x=5, y=225, width=600, height=10, border_color='white', border_width=2)
@@ -43,27 +48,29 @@ wall20 = play.new_box(color='black', x=-205, y=105, width=100, height=10, border
 wall21 = play.new_box(color='black', x=-110, y=95, width=10, height=100, border_color='white', border_width=2)
 wall22 = play.new_box(color='black', x=50, y=125, width=80, height=10, border_color='white', border_width=2)
 wall23 = play.new_box(color='black', x=220, y=60, width=50, height=10, border_color='white', border_width=2)
-anaKarakter = play.new_image(image='AnaKarakter.png', x=280, y=-200, size=7)
+
+anaKarakter = play.new_image(image="AnaKarakter.png", x=280, y=-200, size=7)
 anaKarakter.hide()
-ormanEvi = play.new_image(image='ev.png', x=-305, y=198, size=15)
+
+ormanEvi = play.new_image(image="ev.png", x=-305, y=198, size=15)
 ormanEvi.hide()
 
-confetti_particles = []
+konfeti_parcalari = []
 
-def create_confetti(x, y):
-    confetti = play.new_circle(color='yellow', x=x, y=y, radius=5)
-    confetti_particles.append(confetti)
+def konfeti_patlat(x,y):
+    konfeti = play.new_circle("yellow", x=x, y=y, radius=5)
+    konfeti_parcalari.append(konfeti)
 
 @ayarlar.when_clicked
-async def settingss():
-    settingsBox.show()
-    settingsText.show()
+async def settings():
+    ayarlarBox.show()
+    ayarlarText.show()
     await play.timer(seconds=4)
-    settingsText.words = "Labirentteki kurtlara dikkat etmeniz gerekmektedir!"
+    ayarlarText.words = "Labirentteki kurtlaara dikkat etmeniz gerekmektedir!"
     await play.timer(seconds=4)
-    settingsBox.hide()
-    settingsText.hide()
-    settingsText.words = "Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!"
+    ayarlarBox.hide()
+    ayarlarText.hide()
+    ayarlarText.words = "Oyunu kazanmak için kırmızı başlıklı kızı hedefe ulaştıralım!"
 
 @CikisButton.when_clicked
 async def cikis():
@@ -72,13 +79,13 @@ async def cikis():
 
 @GirisButton.when_clicked
 async def giris():
-    background.hide()
+    arkaplan.hide()
     GirisButton.hide()
     GirisText.hide()
     CikisButton.hide()
-    settingsBox.hide()
-    settingsText.hide()
     ayarlar.hide()
+    ayarlarBox.hide()
+    ayarlarText.hide()
     anaKarakter.show()
     ormanEvi.show()
     kurt1.show()
@@ -166,16 +173,16 @@ async def start():
 
 @play.repeat_forever
 async def game():
-    anaKarakter.physics.x_speed = 0
-    anaKarakter.physics.y_speed = 0
-    if play.key_is_pressed('w', 'up'):
+    anaKarakter.x_speed = 0
+    anaKarakter.y_speed = 0
+    if play.key_is_pressed("w","up"):
         anaKarakter.physics.y_speed = 15
-    if play.key_is_pressed('s', 'down'):
+    if play.key_is_pressed("s","down"):
         anaKarakter.physics.y_speed = -15
-    if play.key_is_pressed('a', 'left'):
+    if play.key_is_pressed("d","right"):
+        anaKarakter.physics.x_speed = 15 
+    if play.key_is_pressed("a","left"):
         anaKarakter.physics.x_speed = -15
-    if play.key_is_pressed('d', 'right'):
-        anaKarakter.physics.x_speed = 15
     if anaKarakter.is_touching(ormanEvi):
         wall1.hide()
         wall2.hide()
@@ -206,55 +213,55 @@ async def game():
         kurt1.hide()
         kurt2.hide()
         kurt3.hide()
-        for particle in confetti_particles:
-            particle.hide()
-        confetti_particles.clear()
+        for parca in konfeti_parcalari:
+            parca.hide()
+        konfeti_parcalari.clear()
         for _ in range(50):
-            create_confetti(play.random_number(-play.screen.width / 2, play.screen.width / 2), play.random_number(-play.screen.height / 2, play.screen.height / 2))
-        play.new_text(words='Tebrikler! Kurtlardan kurtuldun ve eve ulaştın...', x=0, y=0, font=None, font_size=50, color='red')
+            konfeti_patlat(play.random_number(-play.screen.width /2 , play.screen.width/2),
+                            play.random_number(-play.screen.height /2 , play.screen.height/2))
+        play.new_text(words="Tebrikler! Kurtlardan kurtuldun ve eve ulaştın.. ", 
+                      x=0, y=0,font_size=50,color="green")
         await play.timer(seconds=5)
-    await play.timer(seconds=1 / 60)
-
+    await play.timer(seconds=1/60)
+    
 @play.repeat_forever
 async def move_kurt1():
-    kurt1.physics.x_speed = 5
+    kurt1.physics.x_speed = 5  
     if kurt1.x < -50:
         kurt1.direction = "right"
     if kurt1.x > 50:
         kurt1.direction = "left"
     if kurt1.direction == "left":
-        kurt1.x -= randint(1,10)
-    else:
+        kurt1.x -= randint(1,10)  
+    else: 
         kurt1.x += randint(1,10)
-
-    await play.timer(seconds=1 / 60)
+    await play.timer(seconds=1/60)
 
 @play.repeat_forever
 async def move_kurt2():
-    kurt2.physics.x_speed = 5
+    kurt2.physics.x_speed = 5  
     if kurt2.x < 15:
         kurt2.direction = "right"
     if kurt2.x > 80:
         kurt2.direction = "left"
     if kurt2.direction == "left":
-        kurt2.x -= randint(1,5)
-    else:
+        kurt2.x -= randint(1,5)  
+    else: 
         kurt2.x += randint(1,5)
-
-    await play.timer(seconds=1 / 60)
+    await play.timer(seconds=1/60)
 
 @play.repeat_forever
 async def move_kurt3():
-    kurt3.physics.x_speed = 5
-    if kurt3.x < -55:
+    kurt3.physics.x_speed = 5  
+    if kurt3.x < 15:
         kurt3.direction = "right"
-    if kurt3.x > -25:
+    if kurt3.x > 80:
         kurt3.direction = "left"
     if kurt3.direction == "left":
-        kurt3.x -= randint(1,3)
-    else:
-        kurt3.x += randint(1,3)
-    await play.timer(seconds=1 / 60)
+        kurt3.x -= randint(1,5)  
+    else: 
+        kurt3.x += randint(1,5)
+    await play.timer(seconds=1/60)
 
 @play.repeat_forever
 async def game_over():
@@ -288,8 +295,7 @@ async def game_over():
         kurt1.hide()
         kurt2.hide()
         kurt3.hide()
-        play.new_text(words='Oyun Bitti! Kaybettin...', x=0, y=0, font=None, font_size=50, color='red')
+        play.new_text(words ="Oyun Bitti! Kaybettin ... ", x=0, y=0,  font_size=50, color="red")
         await play.timer(seconds=5)
-    await play.timer(seconds=1 / 60)
-
-play.start_program()
+    await play.timer(seconds=1/60)
+play.start_program ()

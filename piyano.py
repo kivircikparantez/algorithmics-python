@@ -10,20 +10,21 @@ aciklama = play.new_text(words="Melodi oluşturma için tuşlara tıkla",
                          x=0, y=150)
 giris_yazisi = play.new_text(words="Yeteneklerini göstermeye hazırsan başlayalım :)"
                              ,x=0,y=240, font_size=25)
+
 buton_baslat = play.new_box(color="light yellow", 
                             border_color="black", border_width=1,
-                            x=-100, y=-170, width=160, height=50
+                            x=-20, y=-220, width=160, height=50
                             )
 yazi_baslat = play.new_text(words="başlat",
                              x=-20, y=-220, font_size=20)
 
 buton_cal = play.new_box(color="light green", border_color="black",
-                         border_width=1, x=-100, y=-170)
+                         border_width=1, x=-100, y=-170, width=160, height=50)
 
 text_cal = play.new_text(words="melodiyi çal", x=-100, y=-170, font_size=20)
 
 buton_temizle = play.new_box(color="light yellow", border_color="black",
-                         border_width=1, x=100, y=-170)
+                         border_width=1, x=100, y=-170, width=160, height=50)
 text_temizle = play.new_text(words="melodiyi temizle", x=100, y=-170, 
                              font_size=20)
 
@@ -77,6 +78,7 @@ def program_baslasin():
 @buton_baslat.when_clicked
 def baslat_tiklandi():
     notalari_goster()
+    giris_resmi.hide()
     baslik.show()
     aciklama.show()
     buton_cal.show()
@@ -101,4 +103,24 @@ async def melodiyi_cal():
 @buton_temizle.when_clicked
 def melodi_temizle():
     kayitli_melodi.clear()
+
+# Tuşlara tıklanmayı dinle
+@play.repeat_forever
+async def tuslari_kontrol_et():
+    for index in range(len(beyaz_tuslar)):
+        if beyaz_tuslar[index].is_clicked:
+            beyaz_tuslar[index].color = "light grey"
+            nota_sesleri[index].play()
+            await play.timer(seconds=0.3)
+            beyaz_tuslar[index].color ="white"
+            kayitli_melodi.append(index)
+        
+    for tus in siyah_tuslar:
+        if tus.is_clicked:
+            tus.color = "dimgray"
+            await play.timer(seconds=0.3)
+            tus.color = "black"
+
+play.start_program()
+
 

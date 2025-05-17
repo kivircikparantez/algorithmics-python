@@ -9,3 +9,4 @@ Bahsedilen yapay zeka teknolojileri : LangFlow, DeepSeek
 ## Kitap Önerisi
 Kullandığınız teknolojilerle ilgili anlayış geliştirebilmek için: 
 - Neksus - Taş Devri'nden Yapay Zekaya Bilgi Ağlarının Kısa Tarihi - Yuval Noah Harari
+- https://www.storytel.com/tr/books/neksus-9516703
